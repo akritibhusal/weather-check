@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fbedfdd7-bc93-412e-93cf-03bb040bda2b/deploy-status)](https://app.netlify.com/sites/weather-check-gh/deploys)
+
 # Weather Check
 
 [Live Demo](https://weather-check-gh.netlify.app/).
