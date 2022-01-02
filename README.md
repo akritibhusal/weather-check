@@ -6,6 +6,8 @@ An app that uses weatherapi to fetch weather information of a city
  
 [Live Demo](https://weather-check-gh.netlify.app/)
 
+For React-only version of the working app, checkout the `react-only  branch
+
 
 ## Tools used
 
