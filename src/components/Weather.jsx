@@ -1,11 +1,14 @@
 import React from "react";
 
-function Weather({ weatherData }) {
+function Weather({ weatherData, focusSearch }) {
   return (
     <div className="py-4">
       <div className="header">
         <h2 className="h4">
-          Weather in <a href="#city">{weatherData?.location?.name}</a>
+          Weather in{" "}
+          <span className="city-name" onClick={focusSearch}>
+            {weatherData?.location?.name}
+          </span>
         </h2>
         <div className="text-muted">
           {weatherData?.location?.region}, {weatherData?.location?.country}
