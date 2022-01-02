@@ -1,30 +1,34 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import Weather from "./components/Weather";
+import { fetchWeather } from "./reducers/weatherReducer";
 
 function App() {
-  const [weatherData, setWeatherData] = useState({});
-  const getWeather = async () => {
-    const city = document.getElementById("city").value;
+  const [cityName, setCityName] = useState("");
+  const weatherData = useSelector((state) => state.weather);
 
-    const weatherResponse = await fetch(
-      `${process.env.REACT_APP_WEATHER_API_URL}?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${city}`
-    ).then((response) => response.json());
-    setWeatherData(weatherResponse);
+  const dispatch = useDispatch();
+
+  const getWeather = () => {
+    dispatch(fetchWeather(cityName));
   };
 
+  // TODO use useRef
   const focusSearch = () => {
     document.getElementById("city").focus();
     document.getElementById("city").select();
   };
 
-  const onInputChange = (e) => {
+  const onInputKeyDown = (e) => {
     if (e.key === "Enter" && e.keyCode === 13) {
       getWeather();
     }
   };
 
-  console.log(weatherData);
+  const onInputChange = (e) => {
+    setCityName(e.target.value);
+  };
 
   return (
     <div className="App bg-grey vh-100">
@@ -38,13 +42,14 @@ function App() {
               <div className="input-group input-group-lg city-input">
                 <input
                   autoFocus
-                  key="123"
+                  key="city01"
                   type="text"
                   id="city"
                   name="city"
                   className="form-control"
                   placeholder="Search City"
-                  onKeyDown={onInputChange}
+                  onKeyDown={onInputKeyDown}
+                  onChange={onInputChange}
                 />
                 <button
                   className="btn btn-primary btn-block px-4"
